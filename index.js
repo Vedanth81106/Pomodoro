@@ -92,3 +92,16 @@ function updateTime(){
 
     }
 }
+
+window.addEventListener('keydown',(event) => {
+
+    if(event.code === 'Space'){
+        event.preventDefault();
+
+        if(isRunning){
+            timerPause();
+        }else{
+            timerStart();
+        }
+    }
+});
