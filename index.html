@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pomodoro Timer</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <div id="container">
+
+        <div id="timer-controls">
+            <button id="start-btn" class="control-btn" onclick="timerStart()">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M3 12L3 18.9671C3 21.2763 5.53435 22.736 7.59662 21.6145L10.7996 19.8727M3 8L3 5.0329C3 2.72368 5.53435 1.26402 7.59661 2.38548L20.4086 9.35258C22.5305 10.5065 22.5305 13.4935 20.4086 14.6474L14.0026 18.131" stroke-width="1.5" stroke-linecap="round"/>
+                </svg>
+            </button>
+
+            <button id="pause-btn" class="control-btn" onclick="timerPause()">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M15 16V18M15 6V12M9 6V18" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </button>
+
+            <button id="reset-btn" class="control-btn" onclick="timerReset()">
+                <svg viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round" transform="translate(2 2)">
+                        <path d="m4.5 1.5c-2.4138473 1.37729434-4 4.02194088-4 7 0 4.418278 3.581722 8 8 8s8-3.581722 8-8-3.581722-8-8-8"/>
+                        <path d="m4.5 5.5v-4h-4"/>
+                    </g>
+                </svg>
+            </button>
+        </div>
+
+        <div id="clock">25:00</div>
+
+        <div id="dropdown">
+            <div id="selected-option" onclick = "openContainer()">Pomodoro</div>
+            <div id="options-container">
+                <div class="option" data-value="pomo" onclick="selectOption('pomo', 'Pomodoro')">Pomodoro</div>
+                <div class="option" data-value="short" onclick="selectOption('short', 'Short Break')">Short Break</div>
+                <div class="option" data-value="long" onclick="selectOption('long', 'Long Break')">Long Break</div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="index.js"></script>
+</body>
+</html>

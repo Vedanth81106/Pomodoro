@@ -1,0 +1,122 @@
+@font-face {
+    font-family: 'NataSans';
+    src: url('fonts/NataSans-VariableFont_wght.ttf');
+}
+
+body {
+    background-image: url(background.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    margin: 0;
+}
+
+#container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    flex-direction: column;
+    width: 100%;
+}
+
+#timer-controls {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.control-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    backdrop-filter: blur(5px);
+    background-color: rgba(255, 255, 255, 0.25);
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.control-btn:hover {
+    background-color: rgba(255, 255, 255, 0.4);
+}
+
+.control-btn svg {
+    width: 30px;
+    height: 30px;
+}
+
+.control-btn svg path,
+.control-btn svg g {
+    stroke: black;
+}
+
+#clock {
+    font-family: 'NataSans', sans-serif;
+    font-weight: 250;
+    font-size: 7rem;
+    color: #a3b18a;
+    padding: 10px 20px;
+    margin-top: -20px;
+}
+
+#dropdown {
+    position: relative;
+    width: 250px;
+    font-family: 'NataSans', sans-serif;
+}
+
+#selected-option {
+    padding: 10px 20px;
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+    background-color: rgba(0, 0, 0, 0.2);
+    color: #aec17887;
+    font-size: 24px;
+    cursor: pointer;
+    text-align: center;
+    border: none;
+}
+
+#options-container {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    margin-top: 5px;
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+    background-color: rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    z-index: 10;
+}
+
+.show {
+    display: block !important;
+}
+
+.option {
+    padding: 12px 20px;
+    font-size: 20px;
+    color: #31572c;
+    cursor: pointer;
+    text-align: center;
+    background-color: #132a13;
+    backdrop-filter: blur(5px);
+    transition: background-color 0.2s;
+    backdrop-filter: blur(10px);
+}
+
+.option:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+
+#selected-option:hover{
+    background-color: rgba(255, 255, 255, 0.2);
+}
