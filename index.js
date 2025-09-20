@@ -6,6 +6,7 @@ let selectedOption = document.getElementById("selected-option");
 let timer = null;
 let isRunning = false;
 let currentMode = 'pomo';
+let endTime = 0;
 let timeLeft = 25*60;
 
 function openContainer(){
@@ -29,19 +30,19 @@ function changeTimer(currentMode){
 
         case "pomo":
             clearInterval(timer);
-            timeLeft = 25*60;
+            timeLeft = 25*60*1000;
             clock.textContent = `25:00`; 
             break;
         
         case "short":
             clearInterval(timer);
-            timeLeft = 5*60;
+            timeLeft = 5*60*1000;
             clock.textContent = `5:00`;
             break;
         
         case "long":
             clearInterval(timer);
-            timeLeft = 15*60;
+            timeLeft = 15*60*1000;
             clock.textContent = `15:00`;
             break;
         }
@@ -56,6 +57,7 @@ function timerStart(){
 
     if(!isRunning){
         isRunning = true;
+        endTime = Date.now() + timeLeft;
         timer = setInterval(updateTime,1000);
     }
 }
@@ -64,33 +66,28 @@ function timerPause(){
 
     isRunning = false;
     clearInterval(timer);
-}
-
-function resetTimer(){
-
-    
+    timeLeft = endTime - Date.now();
 }
 
 function updateTime(){
-    timeLeft--;
+    const remainingTime = endTime - Date.now();
 
-    let minutes = Math.floor(timeLeft/60);
-    let seconds = Math.floor(timeLeft%60);
+    if (remainingTime <= 0) {
+        clock.textContent = "00:00";
+        clearInterval(timer);
+        isRunning = false;
+        return; 
+    }
+
+    let totalSeconds = Math.round(remainingTime / 1000);
+    let minutes = Math.floor(totalSeconds / 60);
+    let seconds = totalSeconds % 60;
 
     minutes = String(minutes).padStart(2,"0");
     seconds = String(seconds).padStart(2,"0");
 
-    let timeString = `${minutes}:${seconds}`;
+    clock.textContent = `${minutes}:${seconds}`;
 
-    clock.textContent = timeString;
-
-    if(isRunning){
-        if(timeLeft === 0){
-            clearInterval(timer);
-            isRunning = false;
-        }
-
-    }
 }
 
 window.addEventListener('keydown',(event) => {
