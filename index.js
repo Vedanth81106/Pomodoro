@@ -31,19 +31,19 @@ function changeTimer(currentMode){
 
         case "pomo":
             clearInterval(timer);
-            timeLeft = 0.1*60*1000;
+            timeLeft = 25*60*1000;
             clock.textContent = `25:00`; 
             break;
         
         case "short":   
             clearInterval(timer);
-            timeLeft = 0.1*60*1000;
+            timeLeft = 5*60*1000;
             clock.textContent = `5:00`;
             break;
         
         case "long":
             clearInterval(timer);
-            timeLeft = 0.1*60*1000;
+            timeLeft = 15*60*1000;
             clock.textContent = `15:00`;
             break;
         }
