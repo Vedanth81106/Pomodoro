@@ -7,7 +7,7 @@ let timer = null;
 let isRunning = false;
 let currentMode = 'pomo';
 let endTime = 0;
-let timeLeft = 25*60;
+let timeLeft = 25*60*1000;
 
 function openContainer(){
     optionsContainer.classList.toggle("show");
