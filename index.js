@@ -1,5 +1,7 @@
 const clock = document.getElementById("clock");
 const optionsContainer = document.getElementById("options-container");
+const breakEndSound = document.getElementById("breakEndSound");
+const pomoEndSound = document.getElementById("pomoEndSound");
 
 let selectedOption = document.getElementById("selected-option");
 
@@ -14,10 +16,9 @@ function openContainer(){
 }
 
 function selectOption(value, text){
+    currentMode = value;
     selectedOption.textContent = text;
-
     changeTimer(value);
-
     optionsContainer.classList.remove("show");
 }
 
@@ -30,19 +31,19 @@ function changeTimer(currentMode){
 
         case "pomo":
             clearInterval(timer);
-            timeLeft = 25*60*1000;
+            timeLeft = 0.1*60*1000;
             clock.textContent = `25:00`; 
             break;
         
-        case "short":
+        case "short":   
             clearInterval(timer);
-            timeLeft = 5*60*1000;
+            timeLeft = 0.1*60*1000;
             clock.textContent = `5:00`;
             break;
         
         case "long":
             clearInterval(timer);
-            timeLeft = 15*60*1000;
+            timeLeft = 0.1*60*1000;
             clock.textContent = `15:00`;
             break;
         }
@@ -69,6 +70,15 @@ function timerPause(){
     timeLeft = endTime - Date.now();
 }
 
+function playAlarm(currentMode){
+
+    if(currentMode === "pomo"){
+        pomoEndSound.play();
+    }else if(currentMode === "short" || currentMode === "long"){
+        breakEndSound.play();
+    }
+}
+
 function updateTime(){
     const remainingTime = endTime - Date.now();
 
@@ -76,6 +86,7 @@ function updateTime(){
         clock.textContent = "00:00";
         clearInterval(timer);
         isRunning = false;
+        playAlarm(currentMode);
         return; 
     }
 
