@@ -56,6 +56,10 @@ function timerReset(){
 
 function timerStart(){
 
+    if(Notification.permission === 'default'){
+        Notification.requestPermission();
+    }
+
     if(!isRunning){
         isRunning = true;
         endTime = Date.now() + timeLeft;
@@ -68,6 +72,16 @@ function timerPause(){
     isRunning = false;
     clearInterval(timer);
     timeLeft = endTime - Date.now();
+}
+
+function showNotification(){
+    if(Notification.permission === 'granted'){
+        const bodyText = currentMode === 'pomo'?'Time for a break!' : 'Time to get back to work!';
+
+        const notification = new Notification('Pomodoro Timer',{
+            body:bodyText,
+        })
+    }
 }
 
 function playAlarm(currentMode){
@@ -87,6 +101,7 @@ function updateTime(){
         clearInterval(timer);
         isRunning = false;
         playAlarm(currentMode);
+        showNotification();
         return; 
     }
 
